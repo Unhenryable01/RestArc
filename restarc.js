@@ -1,0 +1,1 @@
+console.warn("restArc is still in Development, this isn't finished!") let cmd = prompt("Enter in command to execute:", "YZE"); let text; if (person == null || person == "") { text = "NO COMMAND ENTERED!"; } else { text = "The command '" + cmd + "' was executed!"; } console.info(text) console.error("Goodbye!")
