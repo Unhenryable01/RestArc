@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Storybook - RestArc and FuseArc</title>
+    <script src="https://kit.fontawesome.com/3412ef2576.js" crossorigin="anonymous"></script>
+    <style>
+        :root {
+            --bg-dark: #18181b;
+            --bg-card: #27272a;
+            --text-primary: #fafafa;
+            --text-secondary: #a1a1aa;
+            --accent-green: #22c55e;
+            --accent-hover: #16a34a;
+            --code-bg: #09090b;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            background-color: var(--bg-dark);
+            color: var(--text-primary);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        h1 {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        .card {
+            background: var(--bg-card);
+            border-radius: 8px;
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+        }
+        .card h2 {
+            font-size: 1.5rem;
+            margin-top: 0;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+        }
+        .card p {
+            margin-bottom: 1rem;
+            color: var(--text-secondary);
+        }
+        .command {
+            background: var(--code-bg);
+            padding: 1rem;
+            border-radius: 4px;
+            font-family: 'Courier New', Courier, monospace;
+            white-space: pre-wrap;
+            word-break: break-all;
+            color: #4ade80;
+            margin: 1.5rem 0;
+            overflow-x: auto;
+        }
+        .button {
+            display: inline-block;
+            background: var(--accent-green);
+            color: var(--text-primary);
+            padding: 0.75rem 1rem;
+            border-radius: 4px;
+            text-decoration: none;
+            cursor: pointer;
+            border: none;
+            font-size: 1rem;
+            transition: background-color 0.3s ease;
+            width: 100%;
+            text-align: center;
+            margin-top: auto;
+        }
+        .button:hover {
+            background: var(--accent-hover);
+        }
+        .button.secondary {
+            background: #3f3f46;
+        }
+        .button.secondary:hover {
+            background: #52525b;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 3rem;
+            color: var(--text-secondary);
+        }
+        .icon {
+            margin-right: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1><i class="fas fa-book icon"></i>Welcome to Storybook</h1>
+        <div class="cards">
+            <div class="card">
+                <h2><i class="fas fa-rocket icon"></i>FuseArc</h2>
+                <p>User-friendly and more supported version</p>
+                <p>Run FuseArc with just one command:</p>
+                <div class="command" id="fuseArcCommand">
+fetch('https://raw.githubusercontent.com/Zepr01/RestArc/refs/heads/main/fusearc.js')
+  .then(res => res.text())
+  .then(eval)
+  .catch(console.error);
+                </div>
+                <p>Try FuseArc today!</p>
+                <p>Run FuseArc in DevTools by opening with "CTRL + SHIFT + J"</p>
+                <button class="button" onclick="copyToClipboard()">
+                    <i class="fas fa-copy icon"></i>Copy Command
+                </button>
+            </div>
+            <div class="card">
+                <h2><i class="fas fa-code icon"></i>RestArc</h2>
+                <p>Developer-focused version</p>
+                <p>RestArc is the developer-oriented version of Storybook. It offers more flexibility and control for advanced users.</p>
+                <a href="https://github.com/Zepr01/Storybook" target="_blank" class="button secondary">
+                    <i class="fab fa-github icon"></i>View on GitHub
+                </a>
+            </div>
+        </div>
+        <p class="footer">Choose RestArc or FuseArc for an open-source, forkable solution to enhance your development workflow.</p>
+    </div>
+
+    <script>
+        function copyToClipboard() {
+            const command = document.getElementById('fuseArcCommand').innerText;
+            navigator.clipboard.writeText(command).then(() => {
+                const button = document.querySelector('.button');
+                button.innerHTML = '<i class="fas fa-check icon"></i>Copied!';
+                setTimeout(() => {
+                    button.innerHTML = '<i class="fas fa-copy icon"></i>Copy Command';
+                }, 2000);
+            });
+        }
+    </script>
+</body>
+</html>
